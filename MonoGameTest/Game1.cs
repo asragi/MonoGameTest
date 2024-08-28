@@ -8,7 +8,6 @@ public class Game1 : Game
 {
     private SpriteBatch _spriteBatch;
     private Drawing _drawing;
-    private Texture2D _texture;
     private Image _image;
 
     public Game1()
@@ -33,8 +32,8 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _drawing = new Drawing(_spriteBatch, 2);
-        _texture = Content.Load<Texture2D>("test");
-        _image = new Image(Vector.Zero, _texture, DepthId.Debug, Pivot.BottomRight, null);
+        Resource.Init(Content);
+        _image = new Image(Vector.Zero, Resource.GetTexture(TextureId.Window), DepthId.Debug, Pivot.BottomRight, null);
     }
 
     protected override void Update(GameTime gameTime)
@@ -48,11 +47,9 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Red);
+        GraphicsDevice.Clear(Color.AliceBlue);
         _drawing.DrawBegin();
         _image.Draw(_drawing, new Vector(320, 180));
-        _drawing.Draw(new Vector(100, 0), _texture, DepthId.Debug, new() {Color = new(255, 255, 255, 50)});
-        _drawing.Draw(new Vector(100, 50), _texture, DepthId.Debug, new() {Color = new(255, 255, 255, 50)});
         _drawing.DrawEnd();
         base.Draw(gameTime);
     }
