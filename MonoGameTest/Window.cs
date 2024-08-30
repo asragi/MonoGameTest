@@ -90,7 +90,7 @@ public class Window
         return images;
     }
 
-    public Vector GetRelativePosition() => _centerImage.GetRelativePosition();
+    public Vector GetRelativePosition() => _cornerImages[0].GetRelativePosition();
 
     public void Draw(Drawing d, Vector parentPosition)
     {

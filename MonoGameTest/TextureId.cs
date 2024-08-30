@@ -4,5 +4,6 @@ public enum TextureId
 {
     Test,
     Window,
+    Cursor,
     Size,
 }

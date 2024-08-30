@@ -40,13 +40,13 @@ public class Game1 : Game
         _selectionWindow = new SelectionWindow(
             TextureId.Window,
             6,
-            TextureId.Window,
+            TextureId.Cursor,
             new(30, 30),
             new Size(new Vector(100, 100)),
             Pivot.TopLeft,
             DepthId.Debug,
-            new Vector(10, 10),
-            20,
+            new Vector(8, 8),
+            16,
             ["Option1", "Option2", "Option3"],
             index => { },
             () => { });

@@ -21,7 +21,7 @@ internal class SelectionWindowView
     )
     {
         _window = new Window(windowTexture, cornerSize, relativePosition, size, pivot, depth);
-        _cursor = new Image(cursorPosition, Resource.GetTexture(cursorTexture), depth, Pivot.TopLeft, null);
+        _cursor = new Image(cursorPosition + relativePosition, Resource.GetTexture(cursorTexture), depth, Pivot.TopLeft, null);
         _cursorLineHeight = cursorLineHeight;
         _cursorPosition = cursorPosition;
         _isOpen = false;

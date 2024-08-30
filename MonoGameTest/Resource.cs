@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameTest;
@@ -19,6 +15,7 @@ public static class Resource
         TexturePath = new string[(int)TextureId.Size];
         SetPath(TextureId.Test, "test");
         SetPath(TextureId.Window, "window");
+        SetPath(TextureId.Cursor, "cursor");
     }
 
     public static void Init(Microsoft.Xna.Framework.Content.ContentManager content)
