@@ -6,6 +6,9 @@ public class Image(Vector relativePosition, Texture2D texture, DepthId depth, Pi
 {
     private readonly DrawOption _option = option ?? DrawOption.Default;
     private readonly Size _size = new(new Vector(texture.Width, texture.Height));
+    
+    public Vector GetRelativePosition() => relativePosition;
+    public void SetY(double y) => relativePosition = new Vector(relativePosition.X, y);
 
     public void Draw(Drawing d, Vector parentPosition)
     {

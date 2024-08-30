@@ -11,8 +11,7 @@ public class Game1 : Game
     private const int DrawRate = 2;
     private SpriteBatch _spriteBatch;
     private Drawing _drawing;
-    private Image _image;
-    private Window _window, _secondWindow;
+    private SelectionWindow _selectionWindow;
 
     public Game1()
     {
@@ -37,9 +36,21 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _drawing = new Drawing(_spriteBatch, DrawRate);
         Resource.Init(Content);
-        _image = new Image(new(100, 100), Resource.GetTexture(TextureId.Window), DepthId.Debug, Pivot.TopRight, null);
-        _window = new Window(TextureId.Window, 5, new(8, 8), new Size(new Vector(120, 80)), Pivot.TopLeft, DepthId.Debug);
-        _secondWindow = new Window(TextureId.Window, 5, new(Width - 8, Height - 8), new Size(new Vector(200, 80)), Pivot.BottomRight, DepthId.Debug);
+        KeyInput.Init();
+        _selectionWindow = new SelectionWindow(
+            TextureId.Window,
+            6,
+            TextureId.Window,
+            new(30, 30),
+            new Size(new Vector(100, 100)),
+            Pivot.TopLeft,
+            DepthId.Debug,
+            new Vector(10, 10),
+            20,
+            ["Option1", "Option2", "Option3"],
+            index => { },
+            () => { });
+        _selectionWindow.Open();
     }
 
     protected override void Update(GameTime gameTime)
@@ -47,6 +58,11 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+        
+        KeyInput.Update();
+        
+        if (KeyInput.GetKeyPush(Key.Up))
+            _selectionWindow.OnInputUp();
 
         base.Update(gameTime);
     }
@@ -55,9 +71,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.AliceBlue);
         _drawing.DrawBegin();
-        _image.Draw(_drawing, Vector.Zero);
-        _window.Draw(_drawing, Vector.Zero);
-        _secondWindow.Draw(_drawing, Vector.Zero);
+        _selectionWindow.Draw(_drawing, Vector.Zero);
         _drawing.DrawEnd();
         base.Draw(gameTime);
     }

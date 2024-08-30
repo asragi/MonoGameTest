@@ -84,12 +84,13 @@ public class Window
                 i % 2 == 0 ? 0 : size.X - cornerSize,
                 i < 2 ? 0 : size.Y - cornerSize
             );
-            System.Console.WriteLine(pos);
             images[i] = new Image(relativePosition + pos - pivotPos, texture, depth, Pivot.TopLeft, option);
         }
 
         return images;
     }
+
+    public Vector GetRelativePosition() => _centerImage.GetRelativePosition();
 
     public void Draw(Drawing d, Vector parentPosition)
     {
